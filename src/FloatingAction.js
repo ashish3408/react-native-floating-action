@@ -565,10 +565,11 @@ FloatingAction.propTypes = {
   tintColor: PropTypes.string,
   actions: PropTypes.arrayOf(
     PropTypes.shape({
-      color: PropTypes.string,
+      sideText: PropTypes.bool,
       icon: PropTypes.any,
+      useIcon: PropTypes.bool,
       name: PropTypes.string.isRequired,
-      buttonSize: PropTypes.number,
+      buttonContainer: PropTypes.object,
       text: PropTypes.string,
       textBackground: PropTypes.string,
       textColor: PropTypes.string,
