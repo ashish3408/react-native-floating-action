@@ -44,7 +44,8 @@ class FloatingActionItem extends Component {
   renderText() {
     const {
       // @deprecated in favor of textElevation
-      elevation, // eslint-disable-line
+      elevation,
+      sideText, // eslint-disable-line
       text,
       position,
       textElevation,
@@ -62,7 +63,7 @@ class FloatingActionItem extends Component {
       );
     }
 
-    if (text) {
+    if (sideText) {
       return (
         <View
           key="text"
@@ -100,7 +101,7 @@ class FloatingActionItem extends Component {
   }
 
   renderButton() {
-    const { buttonSize, icon, color, shadow, tintColor } = this.props;
+    const { buttonContainer, icon, shadow, tintColor, text, textStyle, useIcon } = this.props;
 
     let iconStyle;
 
@@ -110,24 +111,17 @@ class FloatingActionItem extends Component {
       iconStyle = styles.icon;
     }
 
-    const propStyles = {
-      tintColor: tintColor,
-      backgroundColor: color,
-      width: buttonSize,
-      height: buttonSize,
-      borderRadius: buttonSize / 2
-    };
-
     return (
       <View
         key="button"
-        style={[styles.button, propStyles, shadow]}
+        style={[styles.button, buttonContainer, shadow]}
       >
-        {React.isValidElement(icon) ? (
+        {useIcon && (React.isValidElement(icon) ? (
           icon
         ) : (
           <Image style={[iconStyle, {tintColor: tintColor}]} source={icon} />
-        )}
+        ))}
+        <Text style={textStyle}>{text}</Text>
       </View>
     );
   }
@@ -208,13 +202,10 @@ class FloatingActionItem extends Component {
 }
 
 FloatingActionItem.propTypes = {
-  tintColor: PropTypes.string,
-  color: PropTypes.string,
   icon: PropTypes.any,
   name: PropTypes.string.isRequired,
-  buttonSize: PropTypes.number,
-  textContainerStyle: PropTypes.object,
   text: PropTypes.string,
+  buttonContainer: PropTypes.object,
   textStyle: PropTypes.object,
   textProps: PropTypes.object,
   textBackground: PropTypes.string,
@@ -315,3 +306,4 @@ const styles = StyleSheet.create({
 });
 
 export default FloatingActionItem;
+
