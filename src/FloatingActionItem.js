@@ -178,7 +178,7 @@ class FloatingActionItem extends Component {
 
     return (
       <Touchable
-        activeOpacity={0.4}
+        activeOpacity={0.9}
         style={styles.container}
         onPress={this.handleOnPress}
       >
